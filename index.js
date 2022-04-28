@@ -38,6 +38,7 @@ setInterval(function(){
     //    for (var j = 0; j < cols; j++) {
     //        document.getElementById("i"+i+"_j"+j).innerHTML = getValue();
     //    }
+    //}
     
     // Use locally stored reference to DOM elements 
     for (var i = 0; i < savedElems.length; i++) {
