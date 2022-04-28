@@ -1,6 +1,7 @@
 var value = 1;
 var rows = 300;
 var cols = 10;
+var savedElems = [];
 
 function tableCreate() {
     var body = document.getElementsByTagName('body')[0];
@@ -12,8 +13,9 @@ function tableCreate() {
       var tr = document.createElement('tr');
       for (var j = 0; j < cols; j++) {
           var td = document.createElement('td');
-          td.setAttribute("id","i"+i+"_j"+j)
+          td.setAttribute("id", "i"+i+"_j"+j)
           td.innerHTML = getValue();
+          savedElems.push(td);
           tr.appendChild(td)
       }
       tbdy.appendChild(tr);
@@ -31,10 +33,15 @@ tableCreate();
 setInterval(function(){
     value = (value + 1) % 100;
 
-    for (var i = 0; i < rows; i++) {
-        for (var j = 0; j < cols; j++) {
-            document.getElementById("i"+i+"_j"+j).innerHTML = getValue();
-        }
+    // Using getElementById() to update elements
+    //for (var i = 0; i < rows; i++) {
+    //    for (var j = 0; j < cols; j++) {
+    //        document.getElementById("i"+i+"_j"+j).innerHTML = getValue();
+    //    }
+    
+    // Use locally stored reference to DOM elements 
+    for (var i = 0; i < savedElems.length; i++) {
+        savedElems[i].innerHTML = getValue();
     } 
 }, 100);
 
