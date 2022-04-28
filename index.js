@@ -1,5 +1,9 @@
+
+// Create the page using a table or divs:
+//   = "table" / "div"
+var createMethod = "div";
 var value = 1;
-var rows = 300;
+var rows = 100;
 var cols = 10;
 var savedElems = [];
 
@@ -13,7 +17,7 @@ function tableCreate() {
       var tr = document.createElement('tr');
       for (var j = 0; j < cols; j++) {
           var td = document.createElement('td');
-          td.setAttribute("id", "i"+i+"_j"+j)
+          //td.setAttribute("id", "i"+i+"_j"+j)
           td.innerHTML = getValue();
           savedElems.push(td);
           tr.appendChild(td)
@@ -24,11 +28,35 @@ function tableCreate() {
     body.appendChild(tbl)
 }
 
+function divCreate() {
+    var body = document.getElementsByTagName('body')[0];
+    var div = document.createElement('div');
+    div.style.width = '70%';
+    div.style.display = "flex";
+    div.style.flexWrap = "wrap";
+    for (var i = 0; i < rows; i++) {
+      var tr = document.createElement('tr');
+      for (var j = 0; j < cols; j++) {
+          var elem = document.createElement('div');
+          //elem.setAttribute("id", "i"+i+"_j"+j)
+          elem.innerHTML = getValue();
+          elem.style.width = "10%";
+          savedElems.push(elem);
+          div.appendChild(elem);
+      }
+    }   
+    body.appendChild(div);
+}
+
 function getValue() {
     return value;
 }
 
-tableCreate();
+if (createMethod == "table"){
+    tableCreate();
+} else {
+    divCreate();
+}
 
 setInterval(function(){
     value = (value + 1) % 100;
@@ -44,5 +72,5 @@ setInterval(function(){
     for (var i = 0; i < savedElems.length; i++) {
         savedElems[i].innerHTML = getValue();
     } 
-}, 100);
+}, 1000);
 
