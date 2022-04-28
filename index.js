@@ -72,5 +72,5 @@ setInterval(function(){
     for (var i = 0; i < savedElems.length; i++) {
         savedElems[i].innerHTML = getValue();
     } 
-}, 1000);
+}, 100);
 
